@@ -31,10 +31,6 @@ class TextInterfaceComponent extends InterfaceComponent {
       size = Vector2(_measuredWidth!, _measuredHeight!);
     }
 
-    textConfig.render(
-      canvas,
-      text,
-      position,
-    );
+    textConfig.render(canvas, text, Vector2.zero(), anchor: anchor);
   }
 }

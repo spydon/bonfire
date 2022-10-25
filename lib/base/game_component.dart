@@ -131,4 +131,10 @@ abstract class GameComponent extends PositionComponent
   }
 
   void onGameDetach() {}
+
+  @override
+  void onMount() {
+    anchor = Anchor.center;
+    super.onMount();
+  }
 }

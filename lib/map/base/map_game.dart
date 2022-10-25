@@ -32,4 +32,10 @@ abstract class GameMap extends GameComponent {
 
   @override
   bool get isVisible => true;
+
+  @override
+  void onMount() {
+    super.onMount();
+    anchor = Anchor.topLeft;
+  }
 }

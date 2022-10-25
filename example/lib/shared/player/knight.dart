@@ -146,7 +146,7 @@ class Knight extends SimplePlayer
     if (hasGameRef) {
       add(
         AnimatedObjectOnce(
-          position: Vector2.zero(),
+          position: Vector2(width / 4, 0),
           animation: CommonSpriteSheet.emote,
           size: Vector2.all(width / 2),
         ),

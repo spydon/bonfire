@@ -69,4 +69,10 @@ class InterfaceComponent extends GameComponent
     selected = true;
     return true;
   }
+
+  @override
+  void onMount() {
+    super.onMount();
+    anchor = Anchor.topLeft;
+  }
 }

@@ -29,32 +29,42 @@ mixin RenderTransformer on PositionComponent {
 
   @override
   void renderTree(Canvas canvas) {
+    // if (_needTransform) {
+    //   preRenderBeforeTransformation(canvas);
+    //   canvas.save();
+    //   _applyFlipAndRotation(canvas);
+    //   render(canvas);
+    //   for (var c in children) {
+    //     c.renderTree(canvas);
+    //   }
+
+    //   // Any debug rendering should be rendered on top of everything
+    //   if (debugMode) {
+    //     renderDebugMode(canvas);
+    //   }
+
+    //   canvas.restore();
+    // } else {
+    //   preRenderBeforeTransformation(canvas);
+    //   render(canvas);
+    //   for (var c in children) {
+    //     c.renderTree(canvas);
+    //   }
+
+    //   // Any debug rendering should be rendered on top of everything
+    //   if (debugMode) {
+    //     renderDebugMode(canvas);
+    //   }
+    // }
     if (_needTransform) {
       preRenderBeforeTransformation(canvas);
       canvas.save();
       _applyFlipAndRotation(canvas);
-      render(canvas);
-      for (var c in children) {
-        c.renderTree(canvas);
-      }
-
-      // Any debug rendering should be rendered on top of everything
-      if (debugMode) {
-        renderDebugMode(canvas);
-      }
+      super.renderTree(canvas);
 
       canvas.restore();
     } else {
-      preRenderBeforeTransformation(canvas);
-      render(canvas);
-      for (var c in children) {
-        c.renderTree(canvas);
-      }
-
-      // Any debug rendering should be rendered on top of everything
-      if (debugMode) {
-        renderDebugMode(canvas);
-      }
+      super.renderTree(canvas);
     }
   }
 
