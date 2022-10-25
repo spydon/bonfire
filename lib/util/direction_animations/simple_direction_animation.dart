@@ -31,7 +31,8 @@ class SimpleDirectionAnimation {
   SpriteAnimation? _current;
   SimpleAnimationEnum? _currentType;
   AnimatedObjectOnce? _fastAnimation;
-  Vector2 position = Vector2.zero();
+
+  PositionComponent? component;
   Vector2 size = Vector2.zero();
   Vector2 _fastAnimationOffset = Vector2.zero();
   final Vector2 _zero = Vector2.zero();
@@ -270,6 +271,14 @@ class SimpleDirectionAnimation {
       case SimpleAnimationEnum.custom:
         break;
     }
+
+    if (_flipX != component?.isFlippedHorizontally) {
+      component?.flipHorizontallyAroundCenter();
+    }
+
+    if (_flipY != component?.isFlippedVertically) {
+      component?.flipVerticallyAroundCenter();
+    }
   }
 
   /// Method used to play specific animation registred in `others`
@@ -278,8 +287,13 @@ class SimpleDirectionAnimation {
       if (!runToTheEndFastAnimation) {
         _fastAnimation = null;
       }
-      _flipX = flipX;
-      _flipY = flipY;
+      if (flipX != component?.isFlippedHorizontally) {
+        component?.flipHorizontallyAroundCenter();
+      }
+
+      if (flipY != component?.isFlippedVertically) {
+        component?.flipVerticallyAroundCenter();
+      }
       _current = others[key];
       _currentType = SimpleAnimationEnum.custom;
     }
@@ -299,7 +313,7 @@ class SimpleDirectionAnimation {
     _fastAnimationOffset = offset ?? Vector2.zero();
     runToTheEndFastAnimation = runToTheEnd;
     final anim = AnimatedObjectOnce(
-      position: position + _fastAnimationOffset,
+      position: _fastAnimationOffset,
       size: size ?? this.size,
       animation: animation,
       onStart: onStart,
@@ -308,8 +322,8 @@ class SimpleDirectionAnimation {
         _fastAnimation = null;
       },
     );
-    anim.isFlipVertical = flipY;
-    anim.isFlipHorizontal = flipX;
+    // anim.isFlipVertical = flipY;
+    // anim.isFlipHorizontal = flipX;
     if (gameRef != null) {
       anim.gameRef = gameRef!;
     }
@@ -329,41 +343,25 @@ class SimpleDirectionAnimation {
     if (_fastAnimation != null) {
       _fastAnimation?.render(canvas);
     } else {
-      if (_flipX || _flipY) {
-        canvas.save();
-        Vector2 center = Vector2(
-          position.x + size.x / 2,
-          position.y + size.y / 2,
-        );
-        canvas.translate(center.x, center.y);
-        canvas.scale(_flipX ? -1 : 1, _flipY ? -1 : 1);
-        canvas.translate(-center.x, -center.y);
-      }
       _current?.getSprite().render(
             canvas,
-            position: position,
             size: size,
             overridePaint: paint,
           );
-
-      if (_flipX || _flipY) {
-        canvas.restore();
-      }
     }
   }
 
   void update(
     double dt,
-    Vector2 position,
     Vector2 size,
+    PositionComponent? component,
   ) {
+    this.component = component;
     if (_playing) {
-      _fastAnimation?.position = position;
       if (_fastAnimationOffset != _zero) {
         _fastAnimation?.position += _fastAnimationOffset;
       }
       _fastAnimation?.update(dt);
-      this.position = position;
       this.size = size;
       _current?.update(dt);
     }

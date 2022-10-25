@@ -37,18 +37,4 @@ mixin Follower on GameComponent {
       position = _lastFollowerPosition! + (followerOffset ?? _zero);
     }
   }
-
-  @override
-  void onMount() {
-    super.onMount();
-    if (followerTarget == null) {
-      followParent();
-    }
-  }
-
-  void followParent() {
-    if (parent != null && parent is GameComponent) {
-      followerTarget = parent as GameComponent;
-    }
-  }
 }

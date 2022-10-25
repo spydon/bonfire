@@ -16,7 +16,7 @@ mixin DirectionAnimation on Movement {
 
   @override
   void update(double dt) {
-    animation?.update(dt, position, size);
+    animation?.update(dt, size,this);
     super.update(dt);
   }
 

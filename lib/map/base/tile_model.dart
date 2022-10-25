@@ -147,8 +147,12 @@ class TileModel {
           color: color,
         );
         tile.angle = angle;
-        tile.isFlipHorizontal = isFlipHorizontal;
-        tile.isFlipVertical = isFlipVertical;
+        if (isFlipHorizontal) {
+          tile.flipHorizontallyAroundCenter();
+        }
+        if (isFlipVertical) {
+          tile.flipVerticallyAroundCenter();
+        }
 
         tile.gameRef = gameRef;
         tile.id = id;
@@ -166,8 +170,12 @@ class TileModel {
           color: color,
         );
         tile.angle = angle;
-        tile.isFlipHorizontal = isFlipHorizontal;
-        tile.isFlipVertical = isFlipVertical;
+        if (isFlipHorizontal) {
+          tile.flipHorizontallyAroundCenter();
+        }
+        if (isFlipVertical) {
+          tile.flipVerticallyAroundCenter();
+        }
 
         tile.gameRef = gameRef;
         tile.id = id;
@@ -189,8 +197,12 @@ class TileModel {
           properties: properties,
         );
         tile.angle = angle;
-        tile.isFlipHorizontal = isFlipHorizontal;
-        tile.isFlipVertical = isFlipVertical;
+        if (isFlipHorizontal) {
+          tile.flipHorizontallyAroundCenter();
+        }
+        if (isFlipVertical) {
+          tile.flipVerticallyAroundCenter();
+        }
 
         tile.gameRef = gameRef;
         tile.id = id;
@@ -210,8 +222,12 @@ class TileModel {
           properties: properties,
         );
         tile.angle = angle;
-        tile.isFlipHorizontal = isFlipHorizontal;
-        tile.isFlipVertical = isFlipVertical;
+        if (isFlipHorizontal) {
+          tile.flipHorizontallyAroundCenter();
+        }
+        if (isFlipVertical) {
+          tile.flipVerticallyAroundCenter();
+        }
 
         tile.gameRef = gameRef;
         tile.id = id;

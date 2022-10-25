@@ -39,7 +39,7 @@ mixin UseSpriteAnimation on GameComponent {
       } else {
         animation?.getSprite().render(
               canvas,
-              position: position + animationOffset,
+              position: animationOffset,
               size: animationSize ?? size,
               overridePaint: paint,
             );
@@ -51,10 +51,8 @@ mixin UseSpriteAnimation on GameComponent {
   void update(double dt) {
     super.update(dt);
     if (isVisible && _playing) {
-      _fastAnimation?.position = position + _fastAnimOffset;
+      _fastAnimation?.position = _fastAnimOffset;
       _fastAnimation?.paint = paint;
-      _fastAnimation?.isFlipHorizontal = isFlipHorizontal;
-      _fastAnimation?.isFlipVertical = isFlipVertical;
       _fastAnimation?.update(dt);
       animation?.update(dt);
     }
@@ -70,7 +68,7 @@ mixin UseSpriteAnimation on GameComponent {
   }) async {
     _fastAnimOffset = offset ?? Vector2.zero();
     final anim = AnimatedObjectOnce(
-      position: position + _fastAnimOffset,
+      position: _fastAnimOffset,
       size: size ?? this.size,
       animation: animation,
       onStart: onStart,

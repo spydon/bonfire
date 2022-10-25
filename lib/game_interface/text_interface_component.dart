@@ -34,7 +34,7 @@ class TextInterfaceComponent extends InterfaceComponent {
     textConfig.render(
       canvas,
       text,
-      Vector2(x, y),
+      position,
     );
   }
 }

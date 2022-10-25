@@ -11,7 +11,7 @@ class AnimatedFollowerObject extends GameComponent
   AnimatedFollowerObject({
     required FutureOr<SpriteAnimation> animation,
     required Vector2 size,
-    GameComponent? target,
+    required GameComponent target,
     Vector2? positionFromTarget,
     this.loopAnimation = false,
     this.useTargetPriority = true,

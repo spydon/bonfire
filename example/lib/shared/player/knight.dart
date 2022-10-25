@@ -145,13 +145,10 @@ class Knight extends SimplePlayer
   void execShowEmote() {
     if (hasGameRef) {
       add(
-        AnimatedFollowerObject(
+        AnimatedObjectOnce(
+          position: Vector2.zero(),
           animation: CommonSpriteSheet.emote,
           size: Vector2.all(width / 2),
-          positionFromTarget: Vector2(
-            18,
-            -6,
-          ),
         ),
       );
     }
