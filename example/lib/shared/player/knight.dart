@@ -228,8 +228,8 @@ class Knight extends SimplePlayer
     if (showBgRangeAttack) {
       double radius = height;
       rectDirectionAttack = Rect.fromLTWH(
-        rectCollision.center.dx - radius,
-        rectCollision.center.dy - radius,
+        -radius / 2,
+        -radius / 2,
         radius * 2,
         radius * 2,
       );
